@@ -323,3 +323,80 @@ setInterval(function(){
         setTimeout(function() { blockk.find(".stepper").append('<div class="divider"></div><div class="step"><div class="circle">3</div><div class="label">V-Bucks</div></div>'); },1500);
         setTimeout(function() { blockk.find(".stepper > div").slice(-2).remove();},4900);
 }, 5000);
+
+$(document).ready(function() {
+    // Function to get URL parameters - defined once
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
+    // General function to handle all relevant URL parameters
+    function handleUrlParameters() {
+        var tabToActivate = getUrlParameter('tab');
+        var sectionToScrollTo = getUrlParameter('section');
+        var usernameToPrefill = getUrlParameter('username');
+        var platformToSelect = getUrlParameter('platform');
+        var pageTitleToSet = getUrlParameter('page_title');
+
+        // Activate Tab
+        if (tabToActivate) {
+            var $tabLink = $('.tab_links a[href="index.html#' + tabToActivate + '"]');
+            var $tabPane = $('#' + tabToActivate);
+            if ($tabLink.length && $tabPane.length) {
+                $('.tab_links li.active').removeClass('active');
+                $('.tab-content .tab-pane.active.in').removeClass('active in');
+                $tabLink.parent('li').addClass('active');
+                $tabPane.addClass('active in');
+            }
+        }
+
+        // Scroll to Section
+        if (sectionToScrollTo) {
+            var $sectionElement = $('#' + sectionToScrollTo);
+            if ($sectionElement.length) {
+                setTimeout(function() {
+                    $sectionElement[0].scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }, 100); // Delay to allow tab activation
+            }
+        }
+
+        // Pre-fill Username
+        if (usernameToPrefill) {
+            var $usernameInput = $('.usernameInput');
+            if ($usernameInput.length) {
+                $usernameInput.val(usernameToPrefill);
+            }
+        }
+
+        // Select Platform
+        if (platformToSelect) {
+            var $platformListItem = $('.platforms li[data-name="' + platformToSelect + '"]');
+            if ($platformListItem.length) {
+                $('.platforms li.platform-active').removeClass('platform-active');
+                $platformListItem.addClass('platform-active');
+                // Ensure global 'platform' var is updated if it's used elsewhere as assumed
+                if (typeof platform !== 'undefined') {
+                    platform = platformToSelect;
+                    console.log("Platform selected via URL parameter (handler): " + platform);
+                }
+            }
+        }
+
+        // Customize H1 Heading
+        if (pageTitleToSet && pageTitleToSet.trim() !== '') {
+            var $h1 = $('h1');
+            if ($h1.length) {
+                $h1.text(pageTitleToSet);
+            }
+        }
+    }
+
+    // Call the handler function
+    handleUrlParameters();
+});
