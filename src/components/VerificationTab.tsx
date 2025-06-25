@@ -4,7 +4,7 @@ interface VerificationTabProps {
 
 export default function VerificationTab({ username }: VerificationTabProps) {
   return (
-    <div className="container human-verification">
+    <div className="container human-verification" style={{ display: 'block' }}>
       <div className="recent_bg">
         <div className="title_bar">
           <span><i className="fas fa-user-shield"></i> Verification</span>

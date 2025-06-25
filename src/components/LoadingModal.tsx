@@ -59,7 +59,7 @@ export default function LoadingModal({ show, onHide, selectedAmount, onComplete 
   if (!show) return null
 
   return (
-    <div className="modal fade show" style={{ display: 'block' }}>
+    <div className="modal fade show" style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }}>
       <div className="modal-dialog modal-lg">
         <div className="modal-content">
           <div className="modal-body">
@@ -77,7 +77,7 @@ export default function LoadingModal({ show, onHide, selectedAmount, onComplete 
               )}
               
               {(phase === 'counting' || phase === 'complete') && (
-                <ul className="package-count">
+                <ul className="package-count" style={{ display: 'block' }}>
                   <li className="mobile-package">
                     <div className={`packet_list_price count-js-title ${phase === 'complete' ? '' : ''}`}>
                       {phase === 'complete' ? 'SWEET!' : 'Free'}

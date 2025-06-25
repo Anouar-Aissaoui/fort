@@ -11,6 +11,8 @@ interface TabContentProps {
   setSelectedPlatform: (value: string) => void
   selectedAmount: number
   showVerification: boolean
+  showRightPanel: boolean
+  setShowRightPanel: (value: boolean) => void
   setShowPackagesModal: (value: boolean) => void
   setShowLoadingModal: (value: boolean) => void
 }
@@ -23,6 +25,8 @@ export default function TabContent({
   setSelectedPlatform,
   selectedAmount,
   showVerification,
+  showRightPanel,
+  setShowRightPanel,
   setShowPackagesModal,
   setShowLoadingModal
 }: TabContentProps) {
@@ -41,6 +45,8 @@ export default function TabContent({
               selectedPlatform={selectedPlatform}
               setSelectedPlatform={setSelectedPlatform}
               selectedAmount={selectedAmount}
+              showRightPanel={showRightPanel}
+              setShowRightPanel={setShowRightPanel}
               setShowPackagesModal={setShowPackagesModal}
               setShowLoadingModal={setShowLoadingModal}
             />

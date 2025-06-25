@@ -17,12 +17,25 @@ export default function PackagesModal({ show, onHide, onSelectPackage }: Package
   if (!show) return null
 
   return (
-    <div className="modal fade show" style={{ display: 'block' }}>
+    <div className="modal fade show" style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }}>
       <div className="modal-dialog modal-lg">
         <div className="modal-content">
           <div className="modal-header">
             <h4 className="modal-title">Choose your packet</h4>
-            <button type="button" className="btn-close" onClick={onHide}></button>
+            <button 
+              type="button" 
+              className="btn-close" 
+              onClick={onHide}
+              style={{ 
+                background: 'none', 
+                border: 'none', 
+                fontSize: '24px', 
+                color: '#fff',
+                cursor: 'pointer'
+              }}
+            >
+              ×
+            </button>
           </div>
           <div className="modal-body">
             <ul className="packages">

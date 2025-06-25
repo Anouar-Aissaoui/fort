@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Header from '@/components/Header'
 import TabContent from '@/components/TabContent'
@@ -16,6 +16,7 @@ export default function Home() {
   const [username, setUsername] = useState('')
   const [selectedPlatform, setSelectedPlatform] = useState('pc')
   const [selectedAmount, setSelectedAmount] = useState(1000)
+  const [showRightPanel, setShowRightPanel] = useState(false)
 
   return (
     <div>
@@ -65,6 +66,8 @@ export default function Home() {
           setSelectedPlatform={setSelectedPlatform}
           selectedAmount={selectedAmount}
           showVerification={showVerification}
+          showRightPanel={showRightPanel}
+          setShowRightPanel={setShowRightPanel}
           setShowPackagesModal={setShowPackagesModal}
           setShowLoadingModal={setShowLoadingModal}
         />
@@ -76,6 +79,7 @@ export default function Home() {
         onSelectPackage={(amount) => {
           setSelectedAmount(amount)
           setShowPackagesModal(false)
+          setShowRightPanel(true)
         }}
       />
 

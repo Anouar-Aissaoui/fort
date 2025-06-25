@@ -7,6 +7,8 @@ interface GeneratorProps {
   selectedPlatform: string
   setSelectedPlatform: (value: string) => void
   selectedAmount: number
+  showRightPanel: boolean
+  setShowRightPanel: (value: boolean) => void
   setShowPackagesModal: (value: boolean) => void
   setShowLoadingModal: (value: boolean) => void
 }
@@ -17,10 +19,11 @@ export default function Generator({
   selectedPlatform,
   setSelectedPlatform,
   selectedAmount,
+  showRightPanel,
+  setShowRightPanel,
   setShowPackagesModal,
   setShowLoadingModal
 }: GeneratorProps) {
-  const [showRightPanel, setShowRightPanel] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
   const platforms = [
@@ -37,9 +40,9 @@ export default function Generator({
       // Add shake animation to input
       const input = document.querySelector('.usernameInput')
       if (input) {
-        input.classList.add('shake', 'animated')
+        input.classList.add('shake')
         setTimeout(() => {
-          input.classList.remove('shake', 'animated')
+          input.classList.remove('shake')
         }, 1000)
       }
       return
@@ -127,14 +130,14 @@ export default function Generator({
       </div>
 
       <div className="rightside">
-        <div className={`right_panel ${showRightPanel ? 'd-block' : 'd-none'}`}>
+        <div className={`right_panel ${showRightPanel ? '' : 'd-none'}`} style={{ display: showRightPanel ? 'block' : 'none' }}>
           <div className="title_bar2">
             <span>Your info</span>
           </div>
           <div className="first_block_right">
             NAME<br />
             <span className="prepare-usr">{username || 'Fortnite'}</span>
-            <div className="generator_icons">
+            <div className="generator_icons" style={{ display: 'block' }}>
               <ul>
                 <li>
                   <Image src="/img/kills.png" alt="kills" width={35} height={35} />
@@ -160,7 +163,7 @@ export default function Generator({
             </div>
             <div className="total_coins">
               <Image src="/img/bucks.png" alt="coins" width={35} height={35} />
-              <span className="prepare-value value-Counto">{selectedAmount}</span>
+              <span className="prepare-value value-Counto">{selectedAmount.toLocaleString()}</span>
             </div>
           </div>
           <div className="second_block_right">

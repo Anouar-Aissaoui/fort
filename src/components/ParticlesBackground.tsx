@@ -127,7 +127,9 @@ export default function ParticlesBackground() {
 
     return () => {
       // Cleanup
-      document.head.removeChild(script)
+      if (script.parentNode) {
+        document.head.removeChild(script)
+      }
     }
   }, [])
 
